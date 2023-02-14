@@ -5,7 +5,7 @@
                 <div class="collapse-sectin">
                     <div ref="blister" class="blister-wrapper max-w-[1295px] bg-[#FD6C43]" :class="isBounced ? 'bounced' : ''" @mouseenter="isBounced = true" @mouseleave="isBounced = false">
                         <div class="blister-container relative ">
-                            <div ref="ncyOpen" class="page bg-[#FDE3D7] h-[85%] w-[88%] rounded-[8px] px-20 pt-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
+                            <div ref="ncyOpen" class="page bg-[#FDE3D7] aspect-[1141/751] w-[88%] rounded-[8px] px-20 pt-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
                                 <div class="header flex justify-between italic text-4xl text-[#FD6C43] font-black mb-10">
                                     <div>NANCY OPEN AIR</div>
                                     <div>2022</div>
@@ -14,10 +14,10 @@
                             </div>
                             <!-- <img class="absolute bottom-20 left-[10%] w-[65%] bracelet" src="/images/bracelet.png" alt=""> -->
                             <!-- <img class="absolute bottom-16 right-[10%] w-[25%] sticker" src="/images/sticker.png" alt=""> -->
-                            <div class="blister mix-blend-screen w-full relative z-10 ">
-                                <img class="w-full h-[884px]" src="/images/blister.png" alt="">
+                            <div class="blister mix-blend-screen w-full relative z-10">
+                                <img class="w-full  aspect-[1141/751]" src="/images/blister.png" alt="">
                             </div>
-                            <div class="canevas-wrapper absolute  z-[9] h-[85%] w-[88%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <div ref="canvas" class="canevas-wrapper absolute z-[9]  w-[88%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
 
                             </div>
                         </div>
@@ -47,10 +47,7 @@ import {
 } from 'matter-js';
 
 const isBounced = ref(false);
-
-const widthCanvas = computed(() => {
-    return window.innerWidth;
-})
+const ncyOpen = ref(null)
 
 
 onMounted(() => {
@@ -74,13 +71,13 @@ onMounted(() => {
         options: {
             wireframes: false,
             background: 'transparent',
-            width: widthCanvas.value,
+            width: 1140,
             height: 751
         },
 
     });
 
-    var boxC = Bodies.circle(950, 480, 139, {
+    var sticker = Bodies.circle(950, 480, 139, {
         render: {
             sprite: {
                 texture: '/images/sticker.png',
@@ -93,7 +90,7 @@ onMounted(() => {
             category: 0x0002
         },
     })
-    var boxB = Bodies.rectangle(550, 280, 1030, 90, {
+    var bracelet = Bodies.rectangle(550, 280, 1030, 90, {
         render: {
             sprite: {
                 texture: '/images/bracelet.png',
@@ -107,7 +104,7 @@ onMounted(() => {
         friction: 0
 
     })
-    var boxA = Bodies.rectangle(550, 280, 847, 599, {
+    var visual = Bodies.rectangle(550, 280, 847, 599, {
         render: {
             sprite: {
                 texture: '/images/flyer.png',
@@ -120,27 +117,27 @@ onMounted(() => {
         },
         friction: 5
     })
-    var ground = Bodies.rectangle(0, 751, 2326, 1, {
+    var ground = Bodies.rectangle(0, 751, 2280, 1, {
         friction: 5,
         isStatic: true,
         render: {
             fillStyle: 'black'
         }
     });
-    var groundLeft = Bodies.rectangle(0, 0, 1, 1502, {
+    var wallLeft = Bodies.rectangle(0, 0, 1, 1502, {
 
         isStatic: true,
         render: {
             fillStyle: 'black'
         }
     });
-    var groundRight = Bodies.rectangle(1150, 0, 1, 1502, {
+    var wallRight = Bodies.rectangle(1140, 0, 1, 1502, {
         isStatic: true,
         render: {
             fillStyle: 'black'
         }
     });
-    var roof = Bodies.rectangle(0, 0, 2326, 1, {
+    var roof = Bodies.rectangle(0, 0, 2280, 1, {
 
         friction: 0,
         isStatic: true,
@@ -148,14 +145,14 @@ onMounted(() => {
             fillStyle: 'black'
         }
     });
-    var allBodies = [];
-    allBodies.push(boxA, boxC, boxB);
+    var allItems = [];
+    allItems.push(sticker, bracelet, visual);
 
     var world = engine.world;
     engine.world.gravity.y = 5;
 
     // add all of the bodies to the world
-    Composite.add(world, [boxA, boxC, boxB, ground, groundLeft, groundRight, roof]);
+    Composite.add(world, [visual, sticker, bracelet, ground, wallLeft, wallRight, roof]);
 
     // run the renderer
     Render.run(render);
@@ -168,21 +165,28 @@ onMounted(() => {
 
     nextTick(() => {
         document.querySelector('.blister').addEventListener("mouseover", function() {
-            allBodies.forEach((body) => {
+            allItems.forEach((body) => {
                 Body.setStatic(body, false);
                 Body.setVelocity(body, {
                     x: Math.random() * 0 - 10 ,
-                    y: Math.random() * 20 - 10
+                    y: -30
                 });
                 Body.setAngularVelocity(body, Math.random() * (0.008 - 0.008) + -0.008);
             });
         }, false);
         window.addEventListener('resize', () => {
-            render.options.width = window.innerWidth
-            render.canvas.width = window.innerWidth;
-
+            let canvasWidth = ncyOpen.value.clientWidth;
+            let canvasHeight = ncyOpen.value.clientHeight;
+            render.options.width = canvasWidth;
+            render.options.height = canvasHeight;
+            render.canvas.width = canvasWidth;
+            render.canvas.height = canvasHeight;
+            Body.setPosition(wallRight, {x: canvasWidth, y: canvasHeight});
+            Body.setPosition(ground, {x: 0, y: canvasHeight})
         })
     })
+
+    console.log(render.engine.world.bodies);
 })
 
 
