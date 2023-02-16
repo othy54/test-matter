@@ -24,11 +24,15 @@
                     </div>
                 </div>
             </li>
-            <!-- <li class="list-item">MY SAM</li>
+            <li class="list-item">MY SAM</li>
             <li class="list-item">BLÜEN</li>
-            <li class="list-item">MAIRIE DE LUNÉVILLE</li> -->
+            <li class="list-item">MAIRIE DE LUNÉVILLE</li>
         </ul>
+        <ClientOnly>
+            <Counter />
+        </ClientOnly>
 
+        <!-- <Counter /> -->
     </div>
 
 </template>
