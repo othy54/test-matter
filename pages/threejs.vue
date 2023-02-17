@@ -36,12 +36,13 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger);
+
 
 
 const toRender = ref(null)
 
 onMounted(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const renderer = new WebGLRenderer( { antialias: true } );
 
     renderer.setSize(window.innerWidth, window.innerHeight);
