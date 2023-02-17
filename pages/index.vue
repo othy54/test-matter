@@ -7,7 +7,7 @@
                         <div class="blister-container relative ">
                             <div ref="ncyOpen" class="page bg-[#FDE3D7] aspect-[1141/751] w-[88%] rounded-[8px] px-20 pt-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
                                 <div class="header flex justify-between italic text-4xl text-[#FD6C43] font-black mb-10">
-                                    <div>NANCY OPEN AIR</div>
+                                    <div class="title">NANCY OPEN AIR</div>
                                     <div>2022</div>
                                 </div>
                                 <!-- <div class="w-full h-full flyer"></div> -->
@@ -39,8 +39,11 @@
 
 <script setup>
 
-// import gsap from 'gsap';
-// import ScrollTrigger from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 import {
     Engine,
     Render,
@@ -191,6 +194,14 @@ onMounted(() => {
     })
 
     console.log(render.engine.world.bodies);
+
+    // gsap.to('.title', {
+    //     scrollTrigger: {
+    //         trigger : '.title',
+    //         markers: true,
+    //     },
+    //     x: 250
+    // })
 })
 
 
