@@ -6,7 +6,6 @@
             <div class="section-2 h-[200vh] "></div>
             <div class="section-3 h-[180vh] bg-red-200 bg-opacity-10"></div>
             <div class="section-3 h-[1vh]"></div>
-            <!-- <div class="section-3 h-[80vh] bg-red-300"></div> -->
         </div>
         <div class="fixed pres left-40 top-60">
             <div class="wrapper overflow-hidden">
@@ -178,8 +177,5 @@ onMounted(() => {
 
     animate();
 })
-
-
-
 
 </script>
