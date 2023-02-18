@@ -2,7 +2,8 @@
     <div>
         <div ref="toRender" class="to-render fixed top-0 left-0"></div>
         <div class="relative section-page pt-16">
-            <div class="title text-center uppercase text-[80px] font-semibold text-white h-screen">Ceci est un lapinou</div>
+            <div class="title text-center uppercase text-[80px] font-semibold text-white h-screen">Ceci est un lapinou
+            </div>
             <div class="section-2 h-[200vh] "></div>
             <div class="section-3 h-[180vh] bg-red-200 bg-opacity-10"></div>
             <div class="section-3 h-[1vh]"></div>
@@ -10,18 +11,22 @@
         <div class="fixed pres left-40 top-60">
             <div class="wrapper overflow-hidden">
                 <div class="text-white text-[112px] font-bold leading-[110%] title-reveal translate-y-full">
-                    Un Lapinou <br> Tout Mignon
+                    Un Lapinou <br> Tout Mignons
                 </div>
             </div>
             <div class="wrapper overflow-hidden mt-10">
                 <div class="text-white w-1/2 text-xl text-reveal translate-y-full">
-                    Une petite lampe de chevet qui apporte une lueur douce et chaleureuse dans la chambre. Avec ses grandes oreilles et son petit nez rose, il est l'objet préféré de l'enfant qui partage sa chambre. Chaque soir, avant de s'endormir, l'enfant allume la lampe et admire la douce lumière qui émane de ses yeux brillants.
+                    Une petite lampe de chevet qui apporte une lueur douce et chaleureuse dans la chambre. Avec ses
+                    grandes oreilles et son petit nez rose, il est l'objet préféré de l'enfant qui partage sa chambre.
+                    Chaque soir, avant de s'endormir, l'enfant allume la lampe et admire la douce lumière qui émane de
+                    ses yeux brillants.
                 </div>
             </div>
         </div>
-         <div class="fixed ears top-60 left-1/2 -translate-x-1/2">
+        <div class="fixed ears top-60 left-1/2 -translate-x-1/2">
             <div class="wrapper-2 overflow-hidden">
-                <div class="text-white text-[82px] font-bold leading-[110%] title-reveal whitespace-nowrap translate-y-full">
+                <div
+                    class="text-white text-[82px] font-bold leading-[110%] title-reveal whitespace-nowrap translate-y-full">
                     Carressez les oreilles et lumière !
                 </div>
             </div>
@@ -29,8 +34,8 @@
     </div>
 </template>
 <script setup>
-import { Scene, WebGLRenderer, PerspectiveCamera, RectAreaLight, DirectionalLightHelper, AxesHelper, AmbientLight ,DirectionalLight, Color, HemisphereLight } from 'three';
-import { RectAreaLightHelper }  from 'three/addons/helpers/RectAreaLightHelper.js';
+import { Scene, WebGLRenderer, PerspectiveCamera, RectAreaLight, DirectionalLightHelper, AxesHelper, AmbientLight, DirectionalLight, Color, HemisphereLight } from 'three';
+import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap'
@@ -43,15 +48,15 @@ const toRender = ref(null)
 
 onMounted(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const renderer = new WebGLRenderer( { antialias: true } );
+    const renderer = new WebGLRenderer({ antialias: true });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     toRender.value.appendChild(renderer.domElement);
 
 
-    const camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 500 );
-    camera.position.set( 0, 1.5, 10 );
-    camera.lookAt( 1, 0, 1 );
+    const camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 500);
+    camera.position.set(0, 1.5, 10);
+    camera.lookAt(1, 0, 1);
 
     const scene = new Scene();
 
@@ -79,9 +84,9 @@ onMounted(() => {
     // const rectLightHelper = new RectAreaLightHelper( rectLight );
     // rectLight.add( rectLightHelper );
 
-    const hemiLight = new HemisphereLight( 0xffffff, 0x444444, 1.5 );
-    hemiLight.position.set( 0, 50, 0 );
-    scene.add( hemiLight );
+    const hemiLight = new HemisphereLight(0xffffff, 0x444444, 1.5);
+    hemiLight.position.set(0, 50, 0);
+    scene.add(hemiLight);
 
     // const dirLight = new DirectionalLight( 0xffffff );
     // dirLight.position.set( 0, 20, 10 );
@@ -107,7 +112,7 @@ onMounted(() => {
                 gsap.timeline({
                     scrollTrigger: {
                         trigger: '.section-2',
-                      //  markers: true,
+                        //  markers: true,
                         end: 'top 40%',
                         scrub: true,
                     }
