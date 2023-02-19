@@ -11,7 +11,7 @@
         <div class="fixed pres left-40 top-60">
             <div class="wrapper overflow-hidden">
                 <div class="text-white text-[112px] font-bold leading-[110%] title-reveal translate-y-full">
-                    Un Lapinou <br> Tout Mignons
+                    Un Lapinou <br> Tout Mignon
                 </div>
             </div>
             <div class="wrapper overflow-hidden mt-10">
