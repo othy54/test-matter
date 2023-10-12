@@ -2,7 +2,7 @@
     <div>
         <div ref="toRender" class="to-render fixed top-0 left-0"></div>
         <div class="relative section-page pt-16">
-            <div class="title text-center uppercase text-[80px] font-semibold text-white h-screen">Ceci est un lapinou
+            <div class="title text-center uppercase text-[80px] font-semibold text-white h-screen">Ceci est un Lapin
             </div>
             <div class="section-2 h-[200vh] "></div>
             <div class="section-3 h-[180vh] bg-red-200 bg-opacity-10"></div>
